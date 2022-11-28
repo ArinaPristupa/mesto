@@ -1,0 +1,8 @@
+.element__img-like {
+  transition: 1s;
+  margin-top: 4.7px;
+}
+
+.element__img-like:hover {
+  opacity: 0.5;
+}

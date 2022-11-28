@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Место</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="images/logo_mesto.svg" alt="Логотип место России">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__content">
+                <img class="profile__avatar" src="images/jak_iv_kycto.jpg" alt="Жак-Ив Кусто">
+                <div class="profile__info">
+                    <div class="profile__info-blok"><h1 class="profile__title">Жак-Ив Кусто&nbsp;&thinsp;</h1>
+                       <a href="#"><img class="profile__img-pen"
+                        src="images/Edit_Button.svg" alt="ручка"></a>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+            </div>
+            <a href="#" class="profile__link"><img class="profile__add-button" src="images/Vector_cross_krest_plus.svg"
+                    alt="плюсик"></a>
+        </section>
+        <section class="elements">
+            <article class="element">
+                <img class="element__img" src="images/karachaevck.jpg" alt="карачаевск 1">
+                <div class="element__info">
+                    <h2 class="element__title">Карачаевск</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+            <article class="element">
+                <img class="element__img" src="images/gora_elbrus.jpg" alt="гора эльбрус 1">
+                <div class="element__info">
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+            <article class="element">
+                <img class="element__img" src="images/dombai.jpg" alt="домбай 1">
+                <div class="element__info">
+                    <h2 class="element__title">Домбай</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+            <article class="element">
+                <img class="element__img" src="images/gora_elbrus.jpg" alt="гора Эльбрус 2">
+                <div class="element__info">
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+            <article class="element">
+                <img class="element__img" src="images/dombai.jpg" alt="домбай 2">
+                <div class="element__info">
+                    <h2 class="element__title">Домбай</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+            <article class="element">
+                <img class="element__img" src="images/karachaevck.jpg" alt="карачаево">
+                <div class="element__info">
+                    <h2 class="element__title">Карачаево-Черкессия</h2>
+                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
+                            alt="сердечка лайк"></a>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__container">
+            <h3 class='popup__title'>Редактировать профиль</h3>
+            <form class="popup__form">
+                <input type="text"  placeholder="Ваше имя" class="popup__text popup__text_name">
+                <input type="text"  placeholder="Хобби" class="popup__text  popup__text_hobby">
+                <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+            <img class="popup__close" src="images/Close_Icon.svg" alt="крестик">
+        </div>
+    </div>
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

@@ -15,66 +15,59 @@
     </header>
     <main class="content">
         <section class="profile">
-            <div class="profile__content">
-                <img class="profile__avatar" src="images/jak_iv_kycto.jpg" alt="Жак-Ив Кусто">
-                <div class="profile__info">
-                    <div class="profile__info-blok"><h1 class="profile__title">Жак-Ив Кусто&nbsp;&thinsp;</h1>
-                       <a href="#"><img class="profile__img-pen"
-                        src="images/Edit_Button.svg" alt="ручка"></a>
-                    </div>
-                    <p class="profile__subtitle">Исследователь океана</p>
+            <img class="profile__avatar" src="images/jak_iv_kycto.jpg"
+                alt="Мужчина на фоне моря в очках и красной шапке.">
+            <div class="profile__info">
+                <div class="profile__info-blok">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <button aria-label="Редактировать профиль" type="button" class="profile__img-pen"></button>
                 </div>
+                <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <a href="#" class="profile__link"><img class="profile__add-button" src="images/Vector_cross_krest_plus.svg"
-                    alt="плюсик"></a>
+            <button aria-label="Добавить что-то новое" type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
             <article class="element">
-                <img class="element__img" src="images/karachaevck.jpg" alt="карачаевск 1">
+                <img class="element__img" src="images/karachaevck.jpg" alt="разрушенная крепость, заросшая травой, вокруг лес">
                 <div class="element__info">
                     <h2 class="element__title">Карачаевск</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
             <article class="element">
-                <img class="element__img" src="images/gora_elbrus.jpg" alt="гора эльбрус 1">
+                <img class="element__img" src="images/gora_elbrus.jpg" alt="светло-розовое небо, виднеются вдали горы.">
                 <div class="element__info">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
             <article class="element">
-                <img class="element__img" src="images/dombai.jpg" alt="домбай 1">
+                <img class="element__img" src="images/dombai.jpg" alt="горы, наполовину покрытые снегом, лес.">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
             <article class="element">
-                <img class="element__img" src="images/gora_elbrus.jpg" alt="гора Эльбрус 2">
+                <img class="element__img" src="images/gora_elbrus.jpg" alt="светло-розовое небо, виднеются вдали горы.">
                 <div class="element__info">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
             <article class="element">
-                <img class="element__img" src="images/dombai.jpg" alt="домбай 2">
+                <img class="element__img" src="images/dombai.jpg" alt="горы, наполовину покрытые снегом, лес.">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
             <article class="element">
-                <img class="element__img" src="images/karachaevck.jpg" alt="карачаево">
+                <img class="element__img" src="images/karachaevck.jpg"
+                    alt="разрушенная крепость, заросшая травой, вокруг лес">
                 <div class="element__info">
                     <h2 class="element__title">Карачаево-Черкессия</h2>
-                    <a href="#"><img class="element__img-like element__img-like_active" src="images/heart_like.svg"
-                            alt="сердечка лайк"></a>
+                    <button aria-label="Отметка мне нравится" type="button" class="element__img-like"></button>
                 </div>
             </article>
         </section>
@@ -85,12 +78,12 @@
     <div class="popup">
         <div class="popup__container">
             <h3 class='popup__title'>Редактировать профиль</h3>
-            <form class="popup__form">
-                <input type="text"  placeholder="Ваше имя" class="popup__text popup__text_name">
-                <input type="text"  placeholder="Хобби" class="popup__text  popup__text_hobby">
+            <form name="edit-form" method="POST" class="popup__form">
+                <input type="text" name="user-name" placeholder="Ваше имя" class="popup__text popup__text_type_name">
+                <input type="text" name="user-hobby" placeholder="Хобби" class="popup__text  popup__text_type_hobby">
                 <button type="submit" class="popup__button">Сохранить</button>
             </form>
-            <img class="popup__close" src="images/Close_Icon.svg" alt="крестик">
+            <button aria-label="Закрыть" type="button" class="popup__close"></button>
         </div>
     </div>
     <script src="scripts/index.js"></script>

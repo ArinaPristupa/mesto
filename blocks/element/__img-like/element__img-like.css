@@ -1,8 +1,13 @@
 .element__img-like {
   transition: 1s;
-  margin-top: 4.7px;
+  margin-top: 6px;
+  background-image: url(../../../images/heart_like.svg);
+  background-color: white;
+  background-repeat: no-repeat;
+  border: none;
+  min-width: 22px;
 }
 
 .element__img-like:hover {
-  opacity: 0.5;
+  opacity: .5;
 }

@@ -23,7 +23,7 @@ const imgPopupTitle = document.querySelector(".popup-img__title"); //трети�
 const cardsContainer = document.querySelector(".elements"); //все элементы в карточка то что гридом все карточки
 const templateCard = document.querySelector("#card").content.querySelector(".element"); // темплейт в нтмл
 
-function addCard(name, link) {
+function createCard(name, link) {
   const elementCard = templateCard.cloneNode(true);
   const elementImg = elementCard.querySelector(".element__img");
   const elementTrash = elementCard.querySelector(".element__trash");
@@ -43,7 +43,7 @@ function addCard(name, link) {
 
 //добавляет карточку в начало сетки
 const renderCard = function (name, link) {
-  cardsContainer.prepend(addCard(name, link));
+  cardsContainer.prepend(createCard(name, link));
 }
 
 //метод forEACH

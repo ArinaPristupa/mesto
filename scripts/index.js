@@ -1,6 +1,7 @@
 const profileButton = document.querySelector(".profile__img-pen"); //картинка с ручкой
 const profileAddButton = document.querySelector(".profile__add-button"); //кнопка с плюсиком что-то добавить
 
+const popupList = document.querySelectorAll(".popup"); // попапы все
 const popupCloseButtonList = document.querySelectorAll(".popup__close"); // крестик закрыть попапы все
 
 const profileTitle = document.querySelector(".profile__title"); //название в профайле жак
@@ -39,24 +40,24 @@ function createCard(name, link) {
   elementImgLike.addEventListener("click", () => handleCardLike(elementImgLike)); //по клику вызывается функция переключение класса тоггле
 
   return elementCard;
-}
+};
 
 //добавляет карточку в начало сетки
 const renderCard = function (name, link) {
   cardsContainer.prepend(createCard(name, link));
-}
+};
 
 //метод forEACH
 function renderCards(cards) {
   cards.forEach(function ({ name, link }) {
     renderCard(name, link);
   });
-}
+};
 
 //функция удаления
 function handleCardDelete(element) {
   element.closest(".element").remove();
-}
+};
 
 //функция открытие карточки на весь экран
 function handleOpenCard(image, title) {
@@ -64,21 +65,39 @@ function handleOpenCard(image, title) {
   imgPopupImage.src = image.src;
   imgPopupImage.alt = title;
   imgPopupTitle.textContent = title;
-}
+};
 
 //функция лайка, переключение класса
 function handleCardLike(like) {
   like.classList.toggle("element__img-like_active");
-}
+};
+
 //открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-}
+  document.addEventListener("keydown", closePopupEsc);
+};
 
 //закрытие попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-}
+};
+
+//закрытие по esc
+function closePopupEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".popup_opened"))
+  }
+};
+
+//закрытие за пределами попапа, оверлей
+popupList.forEach(overlay => {
+  overlay.addEventListener("click", (event) => {
+    if (event.target.classList.contains("popup_opened")) {
+      closePopup(event.target);
+    };
+  });
+});
 
 //первый попап при нажатии на кнопку сохранить
 function handleProfileFormSubmit(event) {
@@ -88,7 +107,7 @@ function handleProfileFormSubmit(event) {
   profileSubtitle.textContent = popupTextHobby.value;
 
   closePopup(profilePopup);
-}
+};
 
 //второй попап при нажатии кнопки добавить
 function handleCardFormSubmit(event) {
@@ -100,9 +119,9 @@ function handleCardFormSubmit(event) {
   renderCard(name, link);
 
   closePopup(cardPopup);
-}
+};
 
-//ипсользуем метод forEach закрытие попап
+//иcпользуем метод forEach закрытие попап
 popupCloseButtonList.forEach(function (button) {
   button.addEventListener("click", function (event) {
     closePopup(event.currentTarget.closest(".popup")); //определяет элемент в котором обрабатывается событие, ищет ближайший подходящий класс

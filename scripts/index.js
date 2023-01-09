@@ -24,6 +24,11 @@ const imgPopupTitle = document.querySelector(".popup-img__title"); //трети�
 const cardsContainer = document.querySelector(".elements"); //все элементы в карточка то что гридом все карточки
 const templateCard = document.querySelector("#card").content.querySelector(".element"); // темплейт в нтмл
 
+//переменные для блокировки кнопки добавить
+const textCreateForm = Array.from(popupFormCreate.querySelectorAll(".popup__text"));
+const btnCreateCard = popupFormCreate.querySelector(".popup__button");
+
+
 function createCard(name, link) {
   const elementCard = templateCard.cloneNode(true);
   const elementImg = elementCard.querySelector(".element__img");
@@ -81,6 +86,7 @@ function openPopup(popup) {
 //закрытие попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupEsc);
 };
 
 //закрытие по esc
@@ -138,10 +144,15 @@ profileButton.addEventListener("click", function () {
 //второй попап при открытии
 profileAddButton.addEventListener("click", function () {
   popupFormCreate.reset(); // в форму идёт по умолчанию
+
   openPopup(cardPopup);
+
+  toggleButtonState(textCreateForm, btnCreateCard, validationConfig);//блокировка кнопки добавить
 });
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 popupFormCreate.addEventListener("submit", handleCardFormSubmit);
 
 renderCards(initialCards);
+
+enableValidation(validationConfig);

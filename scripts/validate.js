@@ -1,11 +1,11 @@
-enableValidation({
+const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__text_type_error',
     errorClass: 'popup__input-error_active'
-});
+};
 
 //добавляет ошибку ввода
 function showInputError(formElement, inputElement, errorMessage, config) {
@@ -23,6 +23,7 @@ function hideInputError(formElement, inputElement, config) {
     errorElement.textContent = '';
 };
 
+//проверяет на валидность 
 function checkInputValidity(formElement, inputElement, config) {
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, config);
@@ -31,6 +32,7 @@ function checkInputValidity(formElement, inputElement, config) {
     }
 };
 
+//работа кнопки 
 function toggleButtonState(inputList, buttonElement, config) {
     if (hasInvalidInput(inputList, config)) {
         buttonElement.classList.add(config.inactiveButtonClass);
@@ -68,6 +70,3 @@ function hasInvalidInput(inputList) {
         return !inputElement.validity.valid;
     });
 };
-
-
-

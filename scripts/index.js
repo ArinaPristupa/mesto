@@ -1,3 +1,44 @@
+import { Card } from "./card.js";
+import { FormValidator } from "./FormValidator.js";
+
+
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__text',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__text_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
+
 const profileButton = document.querySelector(".profile__img-pen"); //картинка с ручкой
 const profileAddButton = document.querySelector(".profile__add-button"); //кнопка с плюсиком что-то добавить
 
@@ -17,68 +58,30 @@ const popupFormCreate = document.querySelector(".popup__form_popup-create"); // 
 const popupTextTitle = document.querySelector(".popup__text_type_title"); // название в форме попап добавить
 const popupTextImgLink = document.querySelector(".popup__text_type_img-link"); //ссылка в форме попап добавить
 
-const imgPopup = document.querySelector(".popup-img"); //третий попап картинка в большом размере
-const imgPopupImage = document.querySelector(".popup-img__image"); //третий попап картинка в нём большая
-const imgPopupTitle = document.querySelector(".popup-img__title"); //третий попап название того что на картинке
+export const imgPopup = document.querySelector(".popup-img"); //третий попап картинка в большом размере
+export const imgPopupImage = document.querySelector(".popup-img__image"); //третий попап картинка в нём большая
+export const imgPopupTitle = document.querySelector(".popup-img__title"); //третий попап название того что на картинке
 
 const cardsContainer = document.querySelector(".elements"); //все элементы в карточка то что гридом все карточки
-const templateCard = document.querySelector("#card").content.querySelector(".element"); // темплейт в нтмл
-
-//переменные для блокировки кнопки добавить
-const textCreateForm = Array.from(popupFormCreate.querySelectorAll(".popup__text"));
-const btnCreateCard = popupFormCreate.querySelector(".popup__button");
-
-
-function createCard(name, link) {
-  const elementCard = templateCard.cloneNode(true);
-  const elementImg = elementCard.querySelector(".element__img");
-  const elementTrash = elementCard.querySelector(".element__trash");
-  const elementImgLike = elementCard.querySelector(".element__img-like");
-  const elementCardTitle = elementCard.querySelector(".element__title");
-
-  elementCardTitle.textContent = name;
-  elementImg.src = link;
-  elementImg.alt = name;
-
-  elementImg.addEventListener("click", () => handleOpenCard(elementImg, name)); //по клику вызывается функция которая карточка становится на весь экран
-  elementTrash.addEventListener("click", () => handleCardDelete(elementTrash)); //по клику вызывается функция которая удаляет карточку
-  elementImgLike.addEventListener("click", () => handleCardLike(elementImgLike)); //по клику вызывается функция переключение класса тоггле
-
-  return elementCard;
-};
 
 //добавляет карточку в начало сетки
-const renderCard = function (name, link) {
-  cardsContainer.prepend(createCard(name, link));
+const renderCard = (card) => {
+  cardsContainer.prepend(createCard(card));
 };
 
 //метод forEACH
-function renderCards(cards) {
-  cards.forEach(function ({ name, link }) {
-    renderCard(name, link);
-  });
+function createCard(data) {
+  const card = new Card(data, "#card");
+  const cardElement = card.generateCard();
+  return cardElement;
 };
 
-//функция удаления
-function handleCardDelete(element) {
-  element.closest(".element").remove();
-};
-
-//функция открытие карточки на весь экран
-function handleOpenCard(image, title) {
-  openPopup(imgPopup);
-  imgPopupImage.src = image.src;
-  imgPopupImage.alt = title;
-  imgPopupTitle.textContent = title;
-};
-
-//функция лайка, переключение класса
-function handleCardLike(like) {
-  like.classList.toggle("element__img-like_active");
-};
+initialCards.forEach((data) => {
+  renderCard(data);
+});
 
 //открытие попапа
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
 };
@@ -119,10 +122,13 @@ function handleProfileFormSubmit(event) {
 function handleCardFormSubmit(event) {
   event.preventDefault();
 
-  const name = popupTextTitle.value;
-  const link = popupTextImgLink.value;
+  //const name = popupTextTitle.value;
+  //const link = popupTextImgLink.value;
 
-  renderCard(name, link);
+  renderCard({ name: popupTextTitle.value, link: popupTextImgLink.value });
+
+  event.target.reset();
+  popupFormCreateValidation.resetValidation();
 
   closePopup(cardPopup);
 };
@@ -136,9 +142,13 @@ popupCloseButtonList.forEach(function (button) {
 
 //первый попап при клике сначало должно быть
 profileButton.addEventListener("click", function () {
+  openPopup(profilePopup);
+
+  profileFormValidation.resetValidation();  //сброс валидации
+
   popupTextName.value = profileTitle.textContent;
   popupTextHobby.value = profileSubtitle.textContent;
-  openPopup(profilePopup);
+
 });
 
 //второй попап при открытии
@@ -146,13 +156,13 @@ profileAddButton.addEventListener("click", function () {
   popupFormCreate.reset(); // в форму идёт по умолчанию
 
   openPopup(cardPopup);
-
-  toggleButtonState(textCreateForm, btnCreateCard, validationConfig);//блокировка кнопки добавить
 });
 
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 popupFormCreate.addEventListener("submit", handleCardFormSubmit);
 
-renderCards(initialCards);
+const profileFormValidation = new FormValidator(validationConfig, profilePopup);
+const popupFormCreateValidation = new FormValidator(validationConfig, cardPopup);
 
-enableValidation(validationConfig);
+profileFormValidation.enableValidation();
+popupFormCreateValidation.enableValidation();

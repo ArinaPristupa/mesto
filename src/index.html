@@ -12,11 +12,11 @@
 
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="images/logo_mesto.svg" alt="Логотип место России">
+        <img class="header__logo" src="<%=require('./images/logo_mesto.svg')%>" alt = "Логотип место России">
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="images/jak_iv_kycto.jpg"
+            <img class="profile__avatar" src="<%=require('./images/jak_iv_kycto.jpg')%>"
                 alt="Мужчина на фоне моря в очках и красной шапке.">
             <div class="profile__info">
                 <div class="profile__info-blok">
@@ -38,10 +38,10 @@
         <div class="popup__container">
             <h3 class='popup__title'>Редактировать профиль</h3>
             <form name="edit-form" method="POST" class="popup__form popup__form_popup-save" novalidate>
-                <input type="text" name="user-name" id="user-name" placeholder="Имя"
+                <input type="text" name="name" id="user-name" placeholder="Имя"
                     class="popup__text popup__text_type_name color" minlength="2" maxlength="40" required>
                 <span class="user-name-error popup__input-error"></span>
-                <input type="text" name="user-hobby" id="user-hobby" placeholder="О себе"
+                <input type="text" name="hobby" id="user-hobby" placeholder="О себе"
                     class="popup__text  popup__text_type_hobby color" minlength="2" maxlength="200" required>
                 <span class="user-hobby-error popup__input-error"></span>
                 <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
@@ -81,8 +81,7 @@
             <button aria-label="Удалить картинку" class="element__trash" type="button"></button>
         </article>
     </template>
-    <script type="module" src="scripts/index.js"></script>
-
+    <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>

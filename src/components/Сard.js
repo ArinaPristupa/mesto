@@ -1,10 +1,9 @@
-import {imgPopup, imgPopupImage, imgPopupTitle, openPopup} from './utils.js'
-
-export class Card {
-  constructor(cardElement, templateCard) {
+export default class Card {
+  constructor(cardElement, templateCard, handleCardClick) {
     this._name = cardElement.name;
     this._link = cardElement.link;
     this._templateCard = templateCard;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -30,11 +29,7 @@ export class Card {
 
   //метод открытие карточки на весь экран
   _handleOpenCard() {
-    openPopup(imgPopup);
-
-    imgPopupImage.src = this._link;
-    imgPopupImage.alt = this._name;
-    imgPopupTitle.textContent = this._name;
+    this._handleCardClick(this._name, this._link);
   };
 
   //метод обработчика событий
@@ -56,8 +51,9 @@ export class Card {
     this._elementCardTitle = this._element.querySelector(".element__title");
 
     this._elementCardTitle.textContent = this._name;
-    this._elementImg.src = this._link;
     this._elementImg.alt = this._name;
+    this._elementImg.src = this._link;
+    
   }
 
   //общий публичный метод карточки 

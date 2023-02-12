@@ -44,16 +44,15 @@ export default class Card {
     this._elementImg.addEventListener("click", () => this._handleOpenCard()); //по клику вызывается функция которая карточка становится на весь экран
   };
 
-
   //метод добавления данных карточки
   _addDataCard() {
 
-    this._elementCardTitle = this._element.querySelector(".element__title");
+    this._elementd = this._element.querySelector(".element__title");
 
-    this._elementCardTitle.textContent = this._name;
+    this._elementd.textContent = this._name;
     this._elementImg.alt = this._name;
     this._elementImg.src = this._link;
-    
+
   }
 
   //общий публичный метод карточки 

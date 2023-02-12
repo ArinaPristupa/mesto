@@ -35,15 +35,3 @@ export default class Popup {
         })
     }
 }
-
-
-
-
-//закрытие за пределами попапа, оверлей
-//popupList.forEach(overlay => {
-    //overlay.addEventListener("click", (event) => {
-      //if (event.target.classList.contains("popup_opened")) {
-        //closePopup(event.target);
-      //};
-    //});
-  //});

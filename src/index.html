@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Арина Приступа">
-    <link rel="stylesheet" href="pages/index.css">
     <title>Место</title>
 </head>
 
@@ -53,10 +52,10 @@
         <div class="popup__container">
             <h3 class='popup__title'>Новое место</h3>
             <form name="newplace-form" method="POST" class="popup__form popup__form_popup-create" novalidate>
-                <input type="text" name="user-title" id="user-title" placeholder="Название"
+                <input type="text" name="name" id="user-title" placeholder="Название"
                     class="popup__text popup__text_type_title color" minlength="2" maxlength="30" required>
                 <span class="user-title-error popup__input-error"></span>
-                <input type="url" name="user-link" id="user-link" placeholder="Ссылка на картинку"
+                <input type="url" name="link" id="user-link" placeholder="Ссылка на картинку"
                     class="popup__text  popup__text_type_img-link color" required>
                 <span class="user-link-error popup__input-error"></span>
                 <button type="submit" class="popup__button popup__button_disabled">Создать</button>
@@ -81,7 +80,7 @@
             <button aria-label="Удалить картинку" class="element__trash" type="button"></button>
         </article>
     </template>
-    <script type="module" src="./pages/index.js"></script>
+
 </body>
 
 </html>

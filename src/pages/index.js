@@ -23,27 +23,26 @@ import FormValidator from "../components/FormValidator.js";
 
 const userInfo = new UserInfo({ name: profileTitle, hobby: profileSubtitle });
 
-const openWithImage = (name, link) => {
-  const popupWithImage = new PopupWithImage(imgPopup, { name, link });
-  popupWithImage.setEventListeners();
-  popupWithImage.open();
-}
+const popupWithImage = new PopupWithImage(imgPopup);
 
-const popupFormProfile = new PopupWithForm('.popup-save', { formSubmitCallback: (data) => { userInfo.setUserInfo(data)} });
-
-const renderer = (item) => {
-  const card = new Card(item, "#card", openWithImage);
-  const cardElement = card.generateCard();
-  renderCard.addItem(cardElement);
-}
+const popupFormProfile = new PopupWithForm('.popup-save', { formSubmitCallback: (data) => { userInfo.setUserInfo(data) } });
 
 const renderCard = new Section({
   items: initialCards,
-  renderer: renderer
+  renderer: (item) => {
+    const card = new Card(item, "#card", () => { popupWithImage.open(item.name, item.link) });
+    const cardElement = card.generateCard();
+    renderCard.addItem(cardElement);
+  }
 }, ".elements");
 
-
-const popupFormAdd = new PopupWithForm('.popup-create', { formSubmitCallback: renderer });
+const popupFormAdd = new PopupWithForm('.popup-create', {
+  formSubmitCallback: (item) => {
+    const card = new Card(item, "#card", () => { popupWithImage.open(item.name, item.link) });
+    const cardElement = card.generateCard();
+    renderCard.addItem(cardElement);
+  }
+});
 
 //первый попап по клику
 profileButton.addEventListener("click", () => {
@@ -53,7 +52,7 @@ profileButton.addEventListener("click", () => {
   popupFormProfile.open();
 
   const { name, hobby } = userInfo.getUserInfo();
-  
+
   popupTextName.value = name;
   popupTextHobby.value = hobby;
 
@@ -74,9 +73,12 @@ const popupFormCreateValidation = new FormValidator(validationConfig, cardPopup)
 
 popupFormProfile.setEventListeners();
 popupFormAdd.setEventListeners();
+popupWithImage.setEventListeners();
 
 profileFormValidation.enableValidation();
 popupFormCreateValidation.enableValidation();
+
+
 
 
 

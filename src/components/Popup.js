@@ -24,14 +24,9 @@ export default class Popup {
     setEventListeners() {
         this._popup.addEventListener("click", (event) => {
 
-            if (event.target.classList.contains("popup_opened")) {
+            if (event.target.classList.contains("popup_opened") || event.target.classList.contains("popup__close")) {
                 this.close();
             }
-
-            if (event.target.classList.contains("popup__close")) {
-                this.close();
-            }
-
         })
     }
 }

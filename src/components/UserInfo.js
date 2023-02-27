@@ -1,7 +1,8 @@
 export default class UserInfo {
-    constructor({ name, hobby }) {
+    constructor({ name, hobby, avatar }) {
         this._name = document.querySelector(name);
         this._hobby = document.querySelector(hobby);
+        this._avatar = document.querySelector(avatar);
     }
 
     getUserInfo() {
@@ -11,8 +12,16 @@ export default class UserInfo {
         }
     }
 
+    //запрос на id пользователя
+    getUserId() {
+        return this._userId
+    }
+
     setUserInfo(data) {
         this._name.textContent = data.name;
-        this._hobby.textContent = data.hobby;
+        this._hobby.textContent = data.about;
+        this._avatar.src = data.avatar;
+
+        this._userId = data._id;
     }
 }

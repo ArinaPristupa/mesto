@@ -15,32 +15,39 @@
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/jak_iv_kycto.jpg')%>"
-                alt="Мужчина на фоне моря в очках и красной шапке.">
+
+            <button aria-label="Редактировать аватар" type="button" class="profile__avatar-button">
+                <img class="profile__avatar" src="<%=require('./images/jak_iv_kycto.jpg')%>" alt="Мужчина на фоне моря в очках и красной шапке.">
+            </button>
+
             <div class="profile__info">
                 <div class="profile__info-blok">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <h1 class="profile__title"></h1>
                     <button aria-label="Редактировать профиль" type="button" class="profile__img-pen"></button>
                 </div>
-                <p class="profile__subtitle">Исследователь океана</p>
+                <p class="profile__subtitle"></p>
             </div>
+
             <button aria-label="Добавить что-то новое" type="button" class="profile__add-button"></button>
         </section>
+
         <section class="elements">
         </section>
 
     </main>
+
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+
     <div class="popup popup-save">
         <div class="popup__container">
             <h3 class='popup__title'>Редактировать профиль</h3>
-            <form name="edit-form" method="POST" class="popup__form popup__form_popup-save" novalidate>
+            <form name="form" method="POST" class="popup__form popup__form_popup-save" novalidate>
                 <input type="text" name="name" id="user-name" placeholder="Имя"
                     class="popup__text popup__text_type_name color" minlength="2" maxlength="40" required>
                 <span class="user-name-error popup__input-error"></span>
-                <input type="text" name="hobby" id="user-hobby" placeholder="О себе"
+                <input type="text" name="about" id="user-hobby" placeholder="О себе"
                     class="popup__text  popup__text_type_hobby color" minlength="2" maxlength="200" required>
                 <span class="user-hobby-error popup__input-error"></span>
                 <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
@@ -48,10 +55,11 @@
             <button aria-label="Закрыть" type="button" class="popup__close"></button>
         </div>
     </div>
+
     <div class="popup popup-create">
         <div class="popup__container">
             <h3 class='popup__title'>Новое место</h3>
-            <form name="newplace-form" method="POST" class="popup__form popup__form_popup-create" novalidate>
+            <form name="form" method="POST" class="popup__form popup__form_popup-create" novalidate>
                 <input type="text" name="name" id="user-title" placeholder="Название"
                     class="popup__text popup__text_type_title color" minlength="2" maxlength="30" required>
                 <span class="user-title-error popup__input-error"></span>
@@ -63,6 +71,7 @@
             <button aria-label="Закрыть" type="button" class="popup__close"></button>
         </div>
     </div>
+
     <div class="popup popup-img">
         <div class="popup-img__container">
             <button aria-label="Закрыть" type="button" class="popup__close"></button>
@@ -70,17 +79,44 @@
             <h2 class="popup-img__title"></h2>
         </div>
     </div>
+
+    <div class="popup popup-avatar">
+        <div class="popup__container popup-avatar__container">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form name="form" class="popup__form popup__form_popup-avatar" novalidate>
+                <input type="url" name="avatar" id="user-avatar" placeholder="https://somewebsite.com/someimage.jpg"
+                    class="popup__text  popup__text_type_popup-avatar" required>
+                <span class="user-avatar-error popup__input-error"></span>
+                <button type="submit" class="popup__button popup__button_disabled">Сохранить</button>
+            </form>
+            <button aria-label="Закрыть" type="button" class="popup__close"></button>
+        </div>
+    </div>
+
+    <div class="popup popup-delete">
+        <div class="popup__container">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <form name="form" class="popup__form" novalidate>
+            <button type="submit" class="popup__button">Да</button></form>
+            <button aria-label="Закрыть" type="button" class="popup__close"></button>
+        </form>
+        </div>
+    </div>
+
     <template id="card">
         <article class="element">
             <img class="element__img" src="#" alt='карточки'>
-            <div class="element__info">
-                <h2 class="element__title"></h2>
-                <button aria-label="Отметка мне нравится" class="element__img-like" type="button"></button>
-            </div>
+            
+            <h2 class="element__title"></h2>
             <button aria-label="Удалить картинку" class="element__trash" type="button"></button>
+            <div class="element__info">
+                    <button aria-label="Отметка мне нравится" class="element__img-like" type="button"></button>
+                    <p class="element__like-number">0</p>
+                
+            </div>
+            
         </article>
     </template>
-
 </body>
 
 </html>

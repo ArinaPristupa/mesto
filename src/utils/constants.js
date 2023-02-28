@@ -30,8 +30,6 @@ export const popupTextHobby = document.querySelector(".popup__text_type_hobby");
 export const cardPopup = document.querySelector(".popup-create"); //второй попап добавить
 
 export const imgPopup = ".popup-img"; //третий попап картинка в большом размере
-export const imgPopupImage = document.querySelector(".popup-img__image"); //третий попап картинка в нём большая
-export const imgPopupTitle = document.querySelector(".popup-img__title"); //третий попап название того что на картинке
 
 export const avatarPopup = document.querySelector(".popup-avatar"); //четвертый попап обновление аватара
 

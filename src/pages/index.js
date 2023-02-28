@@ -63,19 +63,13 @@ const popupFormProfile = new PopupWithForm('.popup-save', {
 
 const renderCard = new Section({
   renderer: (cardElement) => {
-    renderCard.addItem(createCard(cardElement,
-      () => { clickCardImage(cardElement) }
-    ))
+    renderCard.addItem(createCard(cardElement))
   }
 }, ".elements");
 
-function clickCardImage(item) {
-  popupWithImage.open(item.name, item.link)
-}
-
-function createCard(cardElement, clickCardImage) {
+function createCard(cardElement) {
   const card = new Card(cardElement, "#card", {
-    handleCardClick: clickCardImage,
+    handleCardClick: () => {popupWithImage.open(cardElement.name, cardElement.link)},
     handleCardDelete: (res) => {
       popupWithDelete.open(res);
       popupWithDelete.delete(() => {

@@ -69,7 +69,7 @@ const renderCard = new Section({
 
 function createCard(cardElement) {
   const card = new Card(cardElement, "#card", {
-    handleCardClick: () => {popupWithImage.open(cardElement.name, cardElement.link)},
+    handleCardClick: () => { popupWithImage.open(cardElement.name, cardElement.link) },
     handleCardDelete: (res) => {
       popupWithDelete.open(res);
       popupWithDelete.delete(() => {
@@ -140,6 +140,7 @@ const popupFormAvatar = new PopupWithForm('.popup-avatar', {
 
 const popupFormAdd = new PopupWithForm('.popup-create', {
   formSubmitCallback: (data) => {
+    popupFormAdd.loadingText('Создание...')
     api
       .addNewCard(data)
       .then((cardElement) => {
@@ -150,6 +151,9 @@ const popupFormAdd = new PopupWithForm('.popup-create', {
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        popupFormAdd.loadingText('Создать')
       })
   }
 });
